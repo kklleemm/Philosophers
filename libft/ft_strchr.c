@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/01/04 18:06:48 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/01/04 18:06:51 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
-
-int		main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	GLFWwindow *win;
-	t_env *e;
+	int		i;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	i = 0;
+	while (s[i] != (char)c && s[i] != '\0')
+		i++;
+	if (s[i] != (char)c)
+		return (0);
+	return ((char *)s + i);
 }

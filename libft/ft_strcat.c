@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/01/04 18:16:28 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/01/04 18:16:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	GLFWwindow *win;
-	t_env *e;
+	int		i;
+	int		len1;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	i = 0;
+	if (s2 == NULL)
+		return (s1);
+	len1 = ft_strlen(s1);
+	while (s2[i] != '\0')
+	{
+		s1[len1 + i] = s2[i];
+		i++;
+	}
+	s1[len1 + i] = '\0';
+	return (s1);
 }

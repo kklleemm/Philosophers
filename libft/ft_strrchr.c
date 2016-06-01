@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2014/11/16 13:25:24 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/01/05 13:45:02 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	GLFWwindow *win;
-	t_env *e;
+	int		i;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	i = ft_strlen(s) + 1;
+	while (i > 0 && s[i - 1] != c)
+		i--;
+	if (i > 0)
+		return ((char*)s + i - 1);
+	return (NULL);
 }

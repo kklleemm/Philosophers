@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2014/11/04 19:20:36 by cdeniau           #+#    #+#             */
+/*   Updated: 2014/11/17 08:47:43 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "libft.h"
 
-int		main(void)
+int		ft_tolower(int c)
 {
-	GLFWwindow *win;
-	t_env *e;
-
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	if (c <= 'Z' && c >= 'A')
+		return (c + 32);
+	else
+		return (c);
 }

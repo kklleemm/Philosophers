@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2014/11/14 14:59:24 by cdeniau           #+#    #+#             */
+/*   Updated: 2014/11/14 15:07:22 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "libft.h"
 
-int		main(void)
+void	ft_memdel(void **ap)
 {
-	GLFWwindow *win;
-	t_env *e;
-
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	if (*ap)
+		free(*ap);
+	ap = NULL;
 }

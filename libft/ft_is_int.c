@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:48 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/04/10 18:04:08 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/04/10 18:08:04 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "libft.h"
 
-int		main(void)
+int	ft_is_int(char const *str)
 {
-	GLFWwindow *win;
-	t_env *e;
+	char	*tmp;
+	int		ret;
+	int		neg;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	create_threads();
-	return (0);
+	ret = 0;
+	if (str)
+	{
+		neg = (str[0] == '+' || str[0] == '-') ? 1 : 0;
+		tmp = ft_itoa(ft_atoi(str));
+		if (ft_strcmp(tmp, str + neg) == 0)
+			ret = 1;
+	}
+	return (ret);
 }
+
