@@ -6,7 +6,7 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/01 13:37:32 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/01 15:17:32 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJS_DIR	= objs
 SRCS_DIR	= srcs
 INCS_DIR	= incs
 
-SRCS		= main.c		\
+SRCS		= main.c			\
+			  create_thread.c
 
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
