@@ -6,7 +6,7 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/01 13:37:32 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/01 15:53:07 by jwalle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,10 @@ SRCS_DIR	= srcs
 INCS_DIR	= incs
 
 SRCS		= main.c		\
-
+			  display.c		\
+			  init.c		\
+			  form.c		\
+			  
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 .PHONY: all clean fclean re
