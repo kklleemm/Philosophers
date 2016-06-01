@@ -29,7 +29,7 @@ GLFWwindow *initWindow(const int resX, const int resY)
 
 	if (!glfwInit())
 		return (NULL);
-	win = glfwCreateWindow(resX, resY, "Filler", NULL, NULL);
+	win = glfwCreateWindow(resX, resY, "Philosopher", NULL, NULL);
 	if (!win)
 	{
 		glfwTerminate();

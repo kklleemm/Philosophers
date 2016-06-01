@@ -36,15 +36,16 @@ int							create_threads(void)
 	int						nb_threads;
 	struct t_thread_info	*tinfo; // see philo.h
 
+	printf("START create\n");
 	nb_threads = 7;
 	i = 0;
-	tinfo = malloc(sizeof (struct t_thread_info) * 7);
+	tinfo = malloc(sizeof (struct t_thread_info) * nb_threads);
 	if (tinfo == NULL)
 		handle_error("malloc");
 	while (i++ < nb_threads)
 	{
 		tinfo[i].thread_num = i;
-		tinfo[i].argv_string = ft_strdup("Sample Text"); // TODO : free
+		tinfo[i].argv_string = ft_strdup("plop"); // TODO : free
 		s = pthread_create(&tinfo[i].thread_id, NULL, &thread_start, &tinfo[i]);
 		if (s != 0)
 			handle_error_en(s, "pthread_create");
