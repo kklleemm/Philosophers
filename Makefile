@@ -6,7 +6,7 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/01 16:14:53 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/02 12:49:41 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,13 @@ OBJS_DIR	= objs
 SRCS_DIR	= srcs
 INCS_DIR	= incs
 
-SRCS		= main.c		\
-			  display.c		\
-			  init.c		\
-			  form.c		\
-			  create_thread.c
+SRCS		= main.c			\
+			  display.c			\
+			  init.c			\
+			  form.c			\
+			  create_thread.c 	\
+			  ft_table_push.c 	\
+			  table_allocation.c
 			  
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 

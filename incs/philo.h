@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/01 16:15:06 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 12:37:15 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 #include <string.h>
 # include <stdio.h> // TODO remove
 # include <errno.h> // TODO remove ?
-# define handle_error_en(en, msg) \
-	do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
-# define handle_error(msg) \
-	do { perror(msg); exit(EXIT_FAILURE); } while (0)
 
 # define WIDTH 1200
 # define HEIGHT 1000
@@ -38,38 +34,44 @@ typedef struct	s_env
 **		philo functions :
 */
 
-void		init_env(t_env *e);
+void						init_env(t_env *e);
+
+typedef struct				s_table
+{
+	void					*data;
+	struct s_table			*next;
+	struct s_table			*prev;
+}							t_table;
+
+typedef struct				s_stick
+{
+	int						id_stick;
+	pthread_mutex_t			mutex;
+}							t_stick;
+
+typedef struct				s_philo
+{
+	short					id;
+	short					hp;
+	pthread_t				thread;
+}							t_philo;
+
+t_table						*table_allocation(void);
+t_table						*ft_lst_push(t_table *t, void *item);
 
 /*
 **		GLFW functions :
 */
 
-void		display(GLFWwindow *win, t_env *e);
-GLFWwindow	*initWindow(const int resX, const int resY);
-void		controls(GLFWwindow *win, int key, int scancode, int action, int mods);
+void						display(GLFWwindow *win, t_env *e);
+GLFWwindow					*initWindow(const int resX, const int resY);
+void						controls(GLFWwindow *win, int key, int scancode, int action, int mods);
 
 /*
 **		Form functions :
 */
 
-void		disp_square_green(int x, int y, float start_y);
-
-typedef struct				t_thread_info /* Used as argument to thread_start() */
-{
-	pthread_t				thread_id;        /* ID returned by pthread_create() */
-	int						thread_num;       /* Application-defined thread # */
-	char					*argv_string;      /* From command-line argument */
-}							s_thread_info;
-
-typedef struct				s_philo
-{
-	short					sticks;
-	short					hp;
-	struct t_thread_info	*tinfo;
-	struct s_philo			*next;
-	struct s_philo			*prev;
-}							t_philo;
-
-int							create_threads(void);
+void						disp_square_green(int x, int y, float start_y);
+t_table						*create_threads(t_table *t);
 
 #endif

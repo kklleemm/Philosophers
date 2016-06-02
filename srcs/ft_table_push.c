@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_table_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 12:53:30 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/06/02 12:25:36 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/06/02 12:35:55 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-/*
-static void			debug(t_table *t)
-{
-	int				i = 0;
 
-	while (i < 20)
+// TODO prev
+t_table		*ft_lst_push(t_table *first, void *item)
+{
+	t_table	*tmp;
+
+	if (!item)
+		return (NULL);
+	if (!first)
 	{
-		printf ("Coucou %p ======  %d\n", t, i);
-		i++;
+		first = malloc(sizeof(t_table));
+		first->data = item;
+		first->next = NULL;
 	}
-}
-*/
-int					main(void)
-{
-	GLFWwindow		*win;
-	t_env			*e;
-	t_table			*t;
-
-	t = table_allocation();
-	t = create_threads(t);
-//	debug(t); // TODO remove
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e);
-	glfwDestroyWindow(win);
-	return (0);
+	else
+	{
+		tmp = first;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = malloc(sizeof(t_table));
+		tmp->next->data = item;
+		tmp->next->next = NULL;
+	}
+	return (first);
 }
