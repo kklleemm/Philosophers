@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 16:14:32 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 19:56:00 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void						init_env(t_env *e);
 
 typedef struct				s_table
 {
+	int						cur;
 	void					*data;
 	struct s_table			*next;
 	struct s_table			*prev;

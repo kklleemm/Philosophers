@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 11:57:10 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 16:18:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 20:01:53 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ static t_stick	*fill_stick(int id)
 	if (!(s = malloc (sizeof (t_stick))))
 		; // TODO exit
 	s->id_stick = id;
-	pthread_mutex_init(&s->mutex, NULL);
+	if (pthread_mutex_init(&s->mutex, NULL) != 0)
+	{
+		write (1, "mutex init failed", 17);
+		exit (0);
+	}
 	return (s);
 }
 
@@ -48,7 +52,6 @@ t_table			*table_allocation(void)
 	i = 0;
 	while (i < 14)
 	{
-		printf ("%d\n", i);
 		if (i % 2 == 1)
 			t = ft_lst_push(t, fill_philo(i));
 		else

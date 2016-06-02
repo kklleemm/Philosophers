@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:06:39 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 16:17:34 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 16:55:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ void disp_string(float x, float y, char *str)
     glRasterPos2d(x, y);
     while (str[i])
         glutBitmapCharacter( GLUT_BITMAP_HELVETICA_18 , str[i++]);
-	if (str)
-		free(str);
+	free(str);
 }
