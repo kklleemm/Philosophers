@@ -6,13 +6,13 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/02 12:49:41 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/02 15:08:10 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
-ALL_CFLAGS	= -Wall -Wextra -Werror
+ALL_CFLAGS	= -Wall -Wextra -Werror -Wno-deprecated
 CC			= gcc
 RM			= rm -rf
 
@@ -29,6 +29,8 @@ SRCS		= main.c			\
 			  form.c			\
 			  create_thread.c 	\
 			  ft_table_push.c 	\
+			  treatment.c 	\
+			  disp_string.c 	\
 			  table_allocation.c
 			  
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

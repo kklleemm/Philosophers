@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   disp_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 15:01:18 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/06/02 15:06:39 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/06/02 15:07:03 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int					main(void)
+void disp_string(float x, float y, char *str)
 {
-	GLFWwindow		*win;
-	t_env			*e;
-	t_table			*t;
+    int i;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	t = table_allocation();
-	t = create_threads(t);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e, t);
-	glfwDestroyWindow(win);
-	return (0);
+    i = 0;
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glRasterPos2d(x, y);
+    while (str[i])
+        glutBitmapCharacter( GLUT_BITMAP_HELVETICA_18 , str[i++]);
 }

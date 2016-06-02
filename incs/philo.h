@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 12:37:15 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 15:09:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,23 @@ typedef struct				s_philo
 {
 	short					id;
 	short					hp;
+	float					x;
+	float					y;
 	pthread_t				thread;
 }							t_philo;
 
 t_table						*table_allocation(void);
 t_table						*ft_lst_push(t_table *t, void *item);
+t_table						*treatment(t_table *t);
 
 /*
 **		GLFW functions :
 */
 
-void						display(GLFWwindow *win, t_env *e);
+void						display(GLFWwindow *win, t_env *e, t_table *t);
 GLFWwindow					*initWindow(const int resX, const int resY);
 void						controls(GLFWwindow *win, int key, int scancode, int action, int mods);
+void						disp_string(float x, float y, char *str);
 
 /*
 **		Form functions :

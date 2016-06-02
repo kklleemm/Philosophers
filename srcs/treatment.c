@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   treatment.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 15:01:18 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/06/02 14:53:05 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/06/02 15:28:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int					main(void)
+t_table		*treatment(t_table *t)
 {
-	GLFWwindow		*win;
-	t_env			*e;
-	t_table			*t;
+	int		i;
+	t_table	*head;
+	t_philo	*p;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	t = table_allocation();
-	t = create_threads(t);
-	win = initWindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e, t);
-	glfwDestroyWindow(win);
-	return (0);
+	i = 0;
+	head = t;
+	while (i++ < 14)
+	{
+		disp_string(22,22, ft_itoa(i));
+		if (i % 2 == 1)
+		{
+			p = (t_philo *)t->data;
+			disp_string(p->x, p->y, ft_itoa(p->id));
+		}
+		t = t->next;
+	}
+	return (head);
 }
