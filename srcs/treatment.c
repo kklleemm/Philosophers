@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 14:53:05 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 15:28:29 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 16:18:39 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ t_table		*treatment(t_table *t)
 	head = t;
 	while (i++ < 14)
 	{
-		disp_string(22,22, ft_itoa(i));
 		if (i % 2 == 1)
 		{
 			p = (t_philo *)t->data;
-			disp_string(p->x, p->y, ft_itoa(p->id));
+			disp_string(p->x, p->y + 0.03, ft_strdup(p->name));
+			disp_string(p->x, p->y + 0.07, ft_strdup("HP = "));
+			disp_string(p->x + 0.07, p->y + 0.07, ft_itoa(p->hp));
 		}
 		t = t->next;
 	}

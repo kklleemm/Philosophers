@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 15:09:29 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/02 16:14:32 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ typedef struct				s_philo
 	short					hp;
 	float					x;
 	float					y;
+	char					*name;
 	pthread_t				thread;
 }							t_philo;
 
 t_table						*table_allocation(void);
 t_table						*ft_lst_push(t_table *t, void *item);
 t_table						*treatment(t_table *t);
+float						set_x(int id);
+float						set_y(int id);
+char						*get_name(int id);
 
 /*
 **		GLFW functions :
