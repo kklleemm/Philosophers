@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 11:57:10 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 17:15:09 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 18:46:39 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static t_philo	*fill_philo(t_philo *p, int id)
 {
 	p->id = id;
-	p->hp = 3; // TODO define
+	p->hp = MAX_LIFE;
 	p->x = set_x(id);
 	p->y = set_y(id);
-	p->thread = NULL; // TODO check this
+	p->thread = NULL;
 	p->state = 0;
 	return (p);
 }

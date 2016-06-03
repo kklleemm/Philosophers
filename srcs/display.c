@@ -6,11 +6,14 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:39:37 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/03 17:12:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 18:46:09 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+#define handle_error_en(en, msg) \
+	do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
 
 void		controls(GLFWwindow *win, int key, int scancode, int action, int mods)
 {
@@ -41,24 +44,23 @@ GLFWwindow	*initWindow(const int resX, const int resY)
 	return (win);
 }
 
-static void	join_threads(t_philo *p)
+t_philo			*join_threads(t_philo *p)
 {
-	int				i;
-	int				err;
+	int			i;
+	int			err;
+	t_philo		*head;
 
+	head = p;
 	i = 0;
-	err = 0;
-	while (p->id != i)
-		p = p->next;
 	while (i < 7)
 	{
 		err = pthread_join(p->thread, NULL);
-		if (err != 0)
-			write (1, "error\n", 6); // TODO error
+		//if (err != 0)
+		//	handle_error_en(err, "coucou");
 		p = p->next;
 		i++;	
 	}
-	p = p->next;
+	return (head);
 }
 
 void		display(GLFWwindow *win, t_env *e, t_philo *p)
@@ -67,11 +69,11 @@ void		display(GLFWwindow *win, t_env *e, t_philo *p)
 	glViewport(0, 0, WIDTH, HEIGHT);
 	glClear(GL_COLOR_BUFFER_BIT);
 	p = create_threads(p);
-	join_threads(p);
+	p = join_threads(p);
 	while (!glfwWindowShouldClose(win))
 	{
 		glfwSwapBuffers(win);
-		disp_data(p);
+		//disp_data(p);
 		glfwPollEvents();
 	}
 	glfwTerminate();
