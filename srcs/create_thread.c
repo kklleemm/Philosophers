@@ -6,86 +6,52 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 14:59:44 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 11:52:48 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 17:12:09 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-#define handle_error_en(en, msg) \
-	do { errno = en; perror(msg);  } while (0)
-static int			get_nb_sticks(t_table *t)
-{
-	int				ret;
-	int				err;
-	t_stick			*s;
-	t_philo			*p;
 
-	p = (t_philo *)t->data;
-	ret = 0;
-	s = (t_stick *)t->next->data;
-	err = pthread_mutex_trylock(&s->mutex);
-	if (err != 0)
-		handle_error_en(err, "pthread_mutex_trylock #1");
-	else
-		ret += 1;
-	s = (t_stick *)t->prev->data;
-	err = pthread_mutex_trylock(&s->mutex);
-	if (err != 0)
-		handle_error_en(err, "pthread_mutex_trylock #2");
-	else
-		ret += 1;
-	if (ret == 2)
-		p->hp = 3; // TODO use const
-	return (ret);
-}
+int					sticks[7] = { 1, 1, 1, 1, 1, 1, 1 };
+pthread_mutex_t 	 oqp;
 
 static void			*thread_philo(void *arg)
 {
-	int				nb_sticks;
-	int				i;
-	int				max;
-	t_table			*t;
+	t_philo			*p;
 
-	i = 0;
-	t = (t_table *)arg;
-	max = t->cur;
-	while (i < max)
+	puts("create thread");
+	p = (t_philo *)arg;
+	pthread_mutex_lock(&oqp);
+	if (sticks[p->id] == 1
+			&& (p->id == 7 ? sticks[0] : sticks[p->id + 1]) == 1)
 	{
-		t = t->next;
-		i++;		
+		sticks[p->id] = 0;
+		p->id == 7 ? (sticks[0] = 0) : (sticks[p->id + 1] = 0);
+		p->state = 2;
+	} else {
+		p->state = 1;
 	}
-	nb_sticks = get_nb_sticks(t);
-	if (nb_sticks == 2)
-		t = p_eat(t);
-	else if (nb_sticks == 1)
-	{
-		sleep(1); // TODO use constant
-	}
-	else
-		t = p_rest(t);
+	pthread_mutex_unlock(&oqp);
 	return (NULL);
 }
 
-t_table				*create_threads(t_table *t)
+t_philo				*create_threads(t_philo *p)
 {
 	int				i;
 	int				err;
-	t_philo			*p;
+	t_philo			*head;
 
 	i = 0;
-	while (i < 14)
+	head = p;
+	if (pthread_mutex_init(&oqp, NULL) != 0)
+		write (1, "oh no\n", 6);
+	while (i < 7)
 	{
-		t->cur = i;
-		if (i % 2 == 1)
-		{
-			p = (t_philo *)t->data;
-			err = pthread_create(&p->thread, NULL, &thread_philo, (void *)t);
-			if (err != 0)
-				; // TODO error
-		//	pthread_join(p->thread, NULL);
-		}
-		t = t->next;
+		err = pthread_create(&p->thread, NULL, &thread_philo, p);
+		if (err != 0)
+			puts("create fail"); // TODO error
+		p = p->next;
 		i++;
 	}
-	return (t);
+	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:39:37 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/03 11:35:42 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 17:12:45 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,38 @@ GLFWwindow	*initWindow(const int resX, const int resY)
 	return (win);
 }
 
-static void	join_threads(t_table *t)
+static void	join_threads(t_philo *p)
 {
 	int				i;
 	int				err;
-	t_philo			*p;
 
 	i = 0;
 	err = 0;
-	while (i < 14)
+	while (p->id != i)
+		p = p->next;
+	while (i < 7)
 	{
-		if (i % 2 == 1)
-		{
-			p = (t_philo *)t->data;
-			err = pthread_join(p->thread, NULL);
-			if (err != 0)
-				write (1, "error\n", 6); // TODO error
-			else
-				write (1, "thread running\n", 15); // TODO error
-		}
-		t = t->next;
+		err = pthread_join(p->thread, NULL);
+		if (err != 0)
+			write (1, "error\n", 6); // TODO error
+		p = p->next;
 		i++;	
 	}
+	p = p->next;
 }
 
-void		display(GLFWwindow *win, t_env *e, t_table *t)
+void		display(GLFWwindow *win, t_env *e, t_philo *p)
 {
-	int		i;
-
-	i = 0;
+	(void)e;
 	glViewport(0, 0, WIDTH, HEIGHT);
 	glClear(GL_COLOR_BUFFER_BIT);
+	p = create_threads(p);
+	join_threads(p);
 	while (!glfwWindowShouldClose(win))
 	{
-		if (i == 0)
-			t = create_threads(t);
-		if (i == 0)
-		{
-			join_threads(t);
-			i += 1;
-		}
 		glfwSwapBuffers(win);
-		t = treatment(t);
+		disp_data(p);
 		glfwPollEvents();
 	}
-	e->player = 1;
 	glfwTerminate();
 }

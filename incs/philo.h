@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 11:52:05 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 17:14:11 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ typedef struct	s_env
 
 void						init_env(t_env *e);
 
-typedef struct				s_table
-{
-	int						cur;
-	void					*data;
-	struct s_table			*next;
-	struct s_table			*prev;
-}							t_table;
-
-typedef struct				s_stick
-{
-	int						id_stick;
-	pthread_mutex_t			mutex;
-}							t_stick;
-
 typedef struct				s_philo
 {
 	short					id;
@@ -57,15 +43,12 @@ typedef struct				s_philo
 	float					x;
 	float					y;
 	int						state; // 0 => REST | 1 => THINK | 2 => EAT
-	char					*name;
 	pthread_t				thread;
+	struct s_philo			*next;
 }							t_philo;
 
-t_table						*table_allocation(void);
-t_table						*ft_lst_push(t_table *t, void *item);
-t_table						*treatment(t_table *t);
-t_table						*p_eat(t_table *t);
-t_table						*p_rest(t_table *t);
+t_philo						*table_allocation(void);
+void						disp_data(t_philo *p);
 float						set_x(int id);
 float						set_y(int id);
 char						*get_name(int id);
@@ -74,7 +57,7 @@ char						*get_name(int id);
 **		GLFW functions :
 */
 
-void						display(GLFWwindow *win, t_env *e, t_table *t);
+void						display(GLFWwindow *win, t_env *e, t_philo *p);
 GLFWwindow					*initWindow(const int resX, const int resY);
 void						controls(GLFWwindow *win, int key, int scancode, int action, int mods);
 void						disp_string(float x, float y, char *str);
@@ -84,6 +67,6 @@ void						disp_string(float x, float y, char *str);
 */
 
 void						disp_square_green(int x, int y, float start_y);
-t_table						*create_threads(t_table *t);
+t_philo						*create_threads(t_philo *p);
 
 #endif
