@@ -6,7 +6,7 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/02 16:14:59 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/03 11:51:43 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS		= main.c			\
 			  treatment.c 		\
 			  disp_string.c 	\
 			  get_philo_data.c	\
+			  p_eat.c			\
 			  table_allocation.c
 			  
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

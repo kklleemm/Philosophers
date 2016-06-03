@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 19:56:00 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 11:52:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct				s_philo
 	short					hp;
 	float					x;
 	float					y;
+	int						state; // 0 => REST | 1 => THINK | 2 => EAT
 	char					*name;
 	pthread_t				thread;
 }							t_philo;
@@ -63,6 +64,8 @@ typedef struct				s_philo
 t_table						*table_allocation(void);
 t_table						*ft_lst_push(t_table *t, void *item);
 t_table						*treatment(t_table *t);
+t_table						*p_eat(t_table *t);
+t_table						*p_rest(t_table *t);
 float						set_x(int id);
 float						set_y(int id);
 char						*get_name(int id);

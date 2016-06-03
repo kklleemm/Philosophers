@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 11:57:10 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/02 20:01:53 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 11:41:27 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_philo	*fill_philo(int id)
 	p->x = set_x(id);
 	p->y = set_y(id);
 	p->thread = NULL; // TODO check this
+	p->state = 0;
 	return (p);
 }
 
