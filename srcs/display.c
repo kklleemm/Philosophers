@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:39:37 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/03 18:46:09 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 20:24:06 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,13 @@ t_philo			*join_threads(t_philo *p)
 void		display(GLFWwindow *win, t_env *e, t_philo *p)
 {
 	(void)e;
-	glViewport(0, 0, WIDTH, HEIGHT);
 	glClear(GL_COLOR_BUFFER_BIT);
 	p = create_threads(p);
-	p = join_threads(p);
 	while (!glfwWindowShouldClose(win))
 	{
+		glClear(GL_COLOR_BUFFER_BIT);
+		disp_data(p);
 		glfwSwapBuffers(win);
-		//disp_data(p);
 		glfwPollEvents();
 	}
 	glfwTerminate();
