@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 11:57:10 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 18:46:39 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 21:58:18 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ t_philo			*table_allocation(void)
 	t_philo		*p;
 	t_philo		*head;
 
-	if (!(p = malloc (sizeof (t_philo))))
-		exit (-1);
+	if (!(p = malloc(sizeof(t_philo))))
+		exit(-1);
 	head = p;
 	i = 0;
 	while (i < 7)
 	{
 		p = fill_philo(p, i);
-		if (i != 6)	
+		if (i != 6)
 		{
-			if (!(p->next = malloc (sizeof (t_philo))))
-				exit (-1);
+			if (!(p->next = malloc(sizeof(t_philo))))
+				exit(-1);
 			p = p->next;
 		}
 		else

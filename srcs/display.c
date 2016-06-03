@@ -6,16 +6,14 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:39:37 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/03 20:24:06 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 22:09:27 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-#define handle_error_en(en, msg) \
-	do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
-
-void		controls(GLFWwindow *win, int key, int scancode, int action, int mods)
+void		controls(GLFWwindow *win, int key, int scancode,
+		int action, int mods)
 {
 	(void)scancode;
 	(void)mods;
@@ -55,10 +53,8 @@ t_philo			*join_threads(t_philo *p)
 	while (i < 7)
 	{
 		err = pthread_join(p->thread, NULL);
-		//if (err != 0)
-		//	handle_error_en(err, "coucou");
 		p = p->next;
-		i++;	
+		i++;
 	}
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 18:52:47 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/03 22:09:01 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include <GLFW/glfw3.h>
 # include <GLUT/glut.h>
 # include <pthread.h>
-#include <string.h>
+# include <string.h>
 # include <stdio.h> // TODO remove
-# include <errno.h> // TODO remove ?
 
 # define WIDTH 1200
 # define HEIGHT 1000
@@ -33,15 +32,15 @@
 # define EAT_T 1
 # define REST_T 1
 # define THINK_T 1
-# define TIMEOUT 30
+# define TIMEOUT 1
 
 # define S_BUSY 0
 # define S_FREE 1
 
-typedef struct	s_env
+typedef struct				s_env
 {
-	int			player;
-}				t_env;
+	int						player;
+}							t_env;
 
 /*
 **		philo functions :
@@ -72,8 +71,9 @@ char						*get_name(int id);
 */
 
 void						display(GLFWwindow *win, t_env *e, t_philo *p);
-GLFWwindow					*initWindow(const int resX, const int resY);
-void						controls(GLFWwindow *win, int key, int scancode, int action, int mods);
+GLFWwindow					*initWindow(const int resx, const int resy);
+void						controls(GLFWwindow *win,
+		int key, int scancode, int action, int mods);
 void						disp_string(float x, float y, char *str);
 
 /*
