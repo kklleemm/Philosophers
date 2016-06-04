@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/04 16:12:43 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/04 19:10:11 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <GLUT/glut.h>
 # include <pthread.h>
 # include <string.h>
-# include <stdio.h> // TODO remove
 
 # define WIDTH 1200
 # define HEIGHT 1000
@@ -38,6 +37,8 @@
 
 # define S_BUSY 0
 # define S_FREE 1
+
+extern int					g_sticks[7];
 
 typedef struct				s_env
 {
@@ -64,16 +65,23 @@ typedef struct				s_philo
 t_philo						*table_allocation(void);
 t_philo						*join_threads(t_philo *p);
 void						disp_data(t_philo *p);
+t_philo						*disp_free_sticks(t_philo *p);
+t_philo						*lose(t_philo *p);
 float						set_x(int id);
 float						set_y(int id);
 char						*get_name(int id);
+int							g_stick_l_free(t_philo *p);
+int							g_stick_r_free(t_philo *p);
+int							wait_time(t_philo *p);
+void						regular_disp(t_philo *p, char *state);
+void						disp_hp(float x, float y, int hp);
 
 /*
 **		GLFW functions :
 */
 
 void						display(GLFWwindow *win, t_env *e, t_philo *p);
-GLFWwindow					*initWindow(const int resx, const int resy);
+GLFWwindow					*initwindow(const int resx, const int resy);
 void						controls(GLFWwindow *win,
 		int key, int scancode, int action, int mods);
 void						disp_string(float x, float y, char *str);

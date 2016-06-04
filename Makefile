@@ -6,7 +6,7 @@
 #    By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/01 13:35:39 by cdeniau           #+#    #+#              #
-#    Updated: 2016/06/03 21:57:07 by cdeniau          ###   ########.fr        #
+#    Updated: 2016/06/04 19:07:29 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,17 @@ SRCS		= main.c			\
 			  display.c			\
 			  init.c			\
 			  form.c			\
+			  wait.c			\
+			  gameover.c		\
+			  stick_r_free.c	\
+			  stick_l_free.c	\
 			  create_thread.c 	\
 			  treatment.c 		\
 			  disp_string.c 	\
+			  disp_hp.c 		\
 			  get_philo_data.c	\
+			  disp_free_sticks.c\
+			  disp_philo.c		\
 			  table_allocation.c
 			  
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

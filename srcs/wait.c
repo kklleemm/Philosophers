@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/04 18:46:41 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/06/04 18:35:33 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/06/04 18:36:00 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int					g_sticks[7] = {1, 1, 1, 1, 1, 1, 1};
-
-int					main(void)
+int			wait_time(t_philo *p)
 {
-	GLFWwindow		*win;
-	t_env			*e;
-	t_philo			*p;
-
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	p = table_allocation();
-	win = initwindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e, p);
-	glfwDestroyWindow(win);
+	if (p->state == REST)
+		return (REST_T);
+	if (p->state == EAT)
+		return (EAT_T);
+	if (p->state == THINK)
+		return (THINK_T);
 	return (0);
 }

@@ -6,14 +6,13 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 14:59:44 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/04 16:33:34 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/04 18:50:34 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
 pthread_mutex_t			g_oqp = PTHREAD_MUTEX_INITIALIZER;
-int						g_sticks[7] = {1, 1, 1, 1, 1, 1, 1};
 
 static t_philo			*eat(t_philo *p)
 {
@@ -49,42 +48,6 @@ static t_philo			*think(t_philo *p)
 	return (p);
 }
 
-static t_philo			*lose(t_philo *p)
-{
-	int					i;
-
-	i = 0;
-	p->state = LOSE;
-	while (i < 18)
-	{
-		p->hp = 0;
-		p = p->next;
-		i++;
-	}
-	return (p);
-}
-
-static int				g_sticks_free(t_philo *p)
-{
-	if (g_sticks[p->id] != S_FREE)
-		return (0);
-	if ((p->id == 6 && g_sticks[0] != S_FREE)
-			|| (p->id != 6 && g_sticks[p->id + 1] != S_FREE))
-		return (0);
-	return (1);
-}
-
-static int				wait_time(t_philo *p)
-{
-	if (p->state == REST)
-		return (REST_T);
-	if (p->state == EAT)
-		return (EAT_T);
-	if (p->state == THINK)
-		return (THINK_T);
-	return (0);
-}
-
 static void				*thread_philo(void *arg)
 {
 	t_philo				*p;
@@ -97,22 +60,18 @@ static void				*thread_philo(void *arg)
 		pthread_mutex_lock(&g_oqp);
 		if (p->state == EAT)
 			p = rest(p);
-		else if (1 == g_sticks_free(p) && p->hp <= p->next->hp)
+		else if (g_stick_l_free(p) && g_stick_r_free(p) && p->hp <= p->next->hp)
 			p = eat(p);
 		else
 			p = think(p);
 		usleep(1000000 * wait_time(p));
 		wait += wait_time(p);
 		if (p->hp <= 0)
-		{
 			p = lose(p);
-			return (NULL);
-		}
 		if (wait >= TIMEOUT)
-		{
 			p->state = WIN;
+		if (wait >= TIMEOUT || p->hp <= 0)
 			return (NULL);
-		}
 	}
 }
 

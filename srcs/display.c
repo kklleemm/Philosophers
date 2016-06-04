@@ -6,13 +6,13 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:39:37 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/03 22:09:27 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/04 18:27:14 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void		controls(GLFWwindow *win, int key, int scancode,
+void			controls(GLFWwindow *win, int key, int scancode,
 		int action, int mods)
 {
 	(void)scancode;
@@ -24,13 +24,13 @@ void		controls(GLFWwindow *win, int key, int scancode,
 	}
 }
 
-GLFWwindow	*initWindow(const int resX, const int resY)
+GLFWwindow		*initwindow(const int resx, const int resy)
 {
-	GLFWwindow *win;
+	GLFWwindow	*win;
 
 	if (!glfwInit())
 		return (NULL);
-	win = glfwCreateWindow(resX, resY, "Filler", NULL, NULL);
+	win = glfwCreateWindow(resx, resy, "Filler", NULL, NULL);
 	if (!win)
 	{
 		glfwTerminate();
@@ -59,7 +59,7 @@ t_philo			*join_threads(t_philo *p)
 	return (head);
 }
 
-void		display(GLFWwindow *win, t_env *e, t_philo *p)
+void			display(GLFWwindow *win, t_env *e, t_philo *p)
 {
 	(void)e;
 	glClear(GL_COLOR_BUFFER_BIT);

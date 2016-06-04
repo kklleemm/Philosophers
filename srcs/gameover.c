@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gameover.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/01 13:37:52 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/04 18:46:41 by cdeniau          ###   ########.fr       */
+/*   Created: 2016/06/04 18:29:29 by cdeniau           #+#    #+#             */
+/*   Updated: 2016/06/04 18:29:47 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int					g_sticks[7] = {1, 1, 1, 1, 1, 1, 1};
-
-int					main(void)
+t_philo					*lose(t_philo *p)
 {
-	GLFWwindow		*win;
-	t_env			*e;
-	t_philo			*p;
+	int					i;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	init_env(e);
-	p = table_allocation();
-	win = initwindow(WIDTH, HEIGHT);
-	if (win)
-		display(win, e, p);
-	glfwDestroyWindow(win);
-	return (0);
+	i = 0;
+	p->state = LOSE;
+	while (i < 18)
+	{
+		p->hp = 0;
+		p = p->next;
+		i++;
+	}
+	return (p);
 }
