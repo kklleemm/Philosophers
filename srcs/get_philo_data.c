@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:06:14 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 22:02:20 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/04 16:19:07 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ float		set_x(int id)
 	if (id == 1)
 		return (.6);
 	if (id == 2)
-		return (.4);
+		return (.3);
 	if (id == 3)
 		return (0);
 	if (id == 4)
-		return (-0.4);
+		return (-0.3);
 	if (id == 5)
 		return (-0.6);
 	if (id == 6)
@@ -38,11 +38,11 @@ float		set_y(int id)
 	if (id == 1)
 		return (0.1);
 	if (id == 2)
-		return (-0.1);
-	if (id == 3)
 		return (-0.3);
+	if (id == 3)
+		return (-0.5);
 	if (id == 4)
-		return (-0.1);
+		return (-0.3);
 	if (id == 5)
 		return (0.1);
 	if (id == 6)

@@ -6,7 +6,7 @@
 /*   By: cdeniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:38:16 by cdeniau           #+#    #+#             */
-/*   Updated: 2016/06/03 22:09:01 by cdeniau          ###   ########.fr       */
+/*   Updated: 2016/06/04 16:12:43 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@
 # define REST 0
 # define THINK 1
 # define EAT 2
+# define WIN 3
+# define LOSE 4
 
-# define MAX_LIFE 4
+# define MAX_LIFE 5
 # define EAT_T 1
 # define REST_T 1
 # define THINK_T 1
-# define TIMEOUT 1
+# define TIMEOUT 30
 
 # define S_BUSY 0
 # define S_FREE 1
